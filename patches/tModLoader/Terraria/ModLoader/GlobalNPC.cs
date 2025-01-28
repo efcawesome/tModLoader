@@ -315,6 +315,7 @@ public abstract class GlobalNPC : GlobalType<NPC, GlobalNPC>
 
 	/// <summary>
 	/// Allows you to modify the damage, etc., that an NPC does to a player.
+	/// <para/> This hook should be used ONLY to modify properties of the HitModifiers. Any extra side effects should occur in OnHit hooks instead.
 	/// </summary>
 	/// <param name="npc"></param>
 	/// <param name="target"></param>
@@ -358,6 +359,7 @@ public abstract class GlobalNPC : GlobalType<NPC, GlobalNPC>
 
 	/// <summary>
 	/// Allows you to modify the damage, knockback, etc., that an NPC does to a friendly NPC.
+	/// <para/> This hook should be used ONLY to modify properties of the HitModifiers. Any extra side effects should occur in OnHit hooks instead.
 	/// </summary>
 	/// <param name="npc"></param>
 	/// <param name="target"></param>
@@ -405,8 +407,9 @@ public abstract class GlobalNPC : GlobalType<NPC, GlobalNPC>
 	}
 
 	/// <summary>
-	/// Allows you to modify the damage, knockback, etc., that an NPC takes from a melee weapon. <br/>
-	/// Runs on the local client. <br/>
+	/// Allows you to modify the damage, knockback, etc., that an NPC takes from a melee weapon. 
+	/// <para/> This hook should be used ONLY to modify properties of the HitModifiers. Any extra side effects should occur in OnHit hooks instead.
+	/// <para/> Runs on the local client.
 	/// </summary>
 	/// <param name="npc"></param>
 	/// <param name="player"></param>
@@ -441,6 +444,7 @@ public abstract class GlobalNPC : GlobalType<NPC, GlobalNPC>
 
 	/// <summary>
 	/// Allows you to modify the damage, knockback, etc., that an NPC takes from a projectile.
+	/// <para/> This hook should be used ONLY to modify properties of the HitModifiers. Any extra side effects should occur in OnHit hooks instead.
 	/// </summary>
 	/// <param name="npc"></param>
 	/// <param name="projectile"></param>
@@ -462,6 +466,7 @@ public abstract class GlobalNPC : GlobalType<NPC, GlobalNPC>
 
 	/// <summary>
 	/// Allows you to use a custom damage formula for when an NPC takes damage from any source. For example, you can change the way defense works or use a different crit multiplier.
+	/// <para/> This hook should be used ONLY to modify properties of the HitModifiers. Any extra side effects should occur in OnHit hooks instead.
 	/// </summary>
 	/// <param name="npc"></param>
 	/// <param name="modifiers"></param>
