@@ -23,7 +23,7 @@ public partial class Recipe
 	public static class ConsumptionRules
 	{
 		[Obsolete($"Replaced by {nameof(IngredientQuantityRules)}.{nameof(IngredientQuantityRules.Alchemy)} due to not accounting for shimmer decrafting")]
-		public static ConsumeItemCallback Alchemy => (Recipe recipe, int type, ref int amount) => IngredientQuantityRules.Alchemy(recipe, type, ref amount, false);
+		public static ConsumeItemCallback Alchemy = (Recipe recipe, int type, ref int amount) => IngredientQuantityRules.Alchemy(recipe, type, ref amount, false);
 	}
 
 	public static class IngredientQuantityRules
