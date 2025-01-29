@@ -82,6 +82,7 @@ internal static class LoggingHooks
 	private static void Hook_GetSourceLineInfo(orig_GetSourceLineInfo orig, object self, Assembly assembly, string assemblyPath, IntPtr loadedPeAddress, int loadedPeSize, bool isFileLayout, IntPtr inMemoryPdbAddress, int inMemoryPdbSize, int methodToken, int ilOffset, out string? sourceFile, out int sourceLine, out int sourceColumn)
 	{
 		try {
+			using var _ = new Logging.QuietExceptionHandle();
 			orig(self, assembly, assemblyPath, loadedPeAddress, loadedPeSize, isFileLayout, inMemoryPdbAddress, inMemoryPdbSize, methodToken, ilOffset, out sourceFile, out sourceLine, out sourceColumn);
 		}
 		catch (BadImageFormatException) when (assembly.FullName.StartsWith("MonoMod.Utils")) {
