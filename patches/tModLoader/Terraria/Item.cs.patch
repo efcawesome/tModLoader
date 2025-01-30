@@ -1893,7 +1893,7 @@
  		if (type == 5437)
  			SetDefaults(5358);
  	}
-@@ -47318,14 +_,33 @@
+@@ -47318,14 +_,34 @@
  	{
  		tooltipContext = -1;
  		BestiaryNotes = null;
@@ -1914,6 +1914,7 @@
 +		ChangePlayerDirectionOnShoot = true;
 +		ArmorPenetration = 0;
 +
++		_nameOverride = null; // Added by TML.
  		sentry = false;
  		hasVanityEffects = false;
  		DD2Summon = false;
@@ -2333,12 +2334,13 @@
  	{
  		if (netID == compareItem.netID && stack == compareItem.stack)
  			return prefix != compareItem.prefix;
-@@ -49285,11 +_,18 @@
+@@ -49285,11 +_,19 @@
  		return true;
  	}
  
 +	/// <summary>
-+	/// Overrides the value of <see cref="Name"/>.
++	/// Overrides the value of <see cref="Name"/> for this Item instance. This is used mainly to change the name shown on the item tooltip for recipe group ingredients to "Any RecipeGroupItemNameHere".
++	/// <para/> This does not change the actual name of this item when shown elsewhere as text, for example, so it is not a suitable way to permanently change an item name. To do that a <see href="https://github.com/tModLoader/tModLoader/wiki/Localization#overwriting-existing-terraria-keys">localization file entry</see> should be used instead.
 +	/// </summary>
 +	/// <param name="name">The new name of this <see cref="Item"/>.</param>
  	public void SetNameOverride(string name)
