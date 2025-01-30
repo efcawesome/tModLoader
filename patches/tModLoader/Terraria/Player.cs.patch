@@ -8432,7 +8432,7 @@
  		using CryptoStream cryptoStream = new CryptoStream(stream, rijndaelManaged.CreateEncryptor(ENCRYPTION_KEY, ENCRYPTION_KEY), CryptoStreamMode.Write);
  		using BinaryWriter binaryWriter = new BinaryWriter(cryptoStream);
  		binaryWriter.Write(279);
-@@ -41992,8 +_,30 @@
+@@ -41992,8 +_,31 @@
  		binaryWriter.Flush();
  		cryptoStream.FlushFinalBlock();
  		stream.Flush();
@@ -8454,6 +8454,7 @@
 +		if (string.IsNullOrEmpty(path))
 +			return;
 +
++		Main.statusText = Language.GetTextValue("tModLoader.BackingUpPlayerFile");
 +		BackupIO.Player.ArchivePlayer(path, isCloudSave);
 +		if (FileUtilities.Exists(path, isCloudSave))
 +			FileUtilities.Copy(path, path + ".bak", isCloudSave);

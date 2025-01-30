@@ -242,6 +242,7 @@
 		"RuntimeErrorSeeLogsForFullTrace": "（请参阅 {0} 以获取完整调用堆栈）",
 		"ShopOverflow": "物品太多，塞不进商店里 :(",
 		"PlayerSaveFail": "保存人物时发生错误",
+		// "BackingUpPlayerFile": "Backing up player file",
 		"OpenLogs": "打开日志",
 		"OpenWebHelp": "打开网页帮助",
 		"SkipToMainMenu": "跳过加载模组",

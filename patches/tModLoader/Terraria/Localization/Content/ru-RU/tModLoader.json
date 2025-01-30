@@ -240,6 +240,7 @@
 		"RuntimeErrorSeeLogsForFullTrace": "(смотрите {0} для получения полной трассировки стека)",
 		"ShopOverflow": "Не все товары поместились в магазине!",
 		"PlayerSaveFail": "Произошла ошибка при сохранении персонажа",
+		// "BackingUpPlayerFile": "Backing up player file",
 		"OpenLogs": "Открыть лог-папку",
 		"OpenWebHelp": "Открыть веб-справку",
 		"SkipToMainMenu": "Пропустить загрузку модов",

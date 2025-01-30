@@ -240,6 +240,7 @@
 		"RuntimeErrorSeeLogsForFullTrace": "(Voir {0} pour plus de détails)",
 		// "ShopOverflow": "Not all items could fit in the shop!",
 		// "PlayerSaveFail": "An error occurred while saving the player",
+		// "BackingUpPlayerFile": "Backing up player file",
 		"OpenLogs": "Ouvrir les Registres",
 		"OpenWebHelp": "Ouvrir l'Aide Internet",
 		"SkipToMainMenu": "Sauter le chargement",

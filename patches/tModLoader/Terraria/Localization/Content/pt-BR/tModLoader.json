@@ -240,6 +240,7 @@
 		"RuntimeErrorSeeLogsForFullTrace": "(veja {0} para o rastreamento completo)",
 		"ShopOverflow": "Não foi possível encaixar todos os itens na loja!",
 		"PlayerSaveFail": "Ocorreu um erro ao salvar o jogador",
+		// "BackingUpPlayerFile": "Backing up player file",
 		"OpenLogs": "Abrir Registros",
 		"OpenWebHelp": "Abrir Ajuda na Web",
 		"SkipToMainMenu": "Pular o Carregamento de Mods",

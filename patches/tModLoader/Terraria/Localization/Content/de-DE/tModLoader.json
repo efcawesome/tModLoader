@@ -240,6 +240,7 @@
 		"RuntimeErrorSeeLogsForFullTrace": "(siehe {0} für weitere Informationen)",
 		"ShopOverflow": "Nicht alle Gegenstände passen in den Shop!",
 		"PlayerSaveFail": "Beim Speichern des Spielers ist ein Fehler aufgetreten",
+		// "BackingUpPlayerFile": "Backing up player file",
 		"OpenLogs": "Logs öffnen",
 		"OpenWebHelp": "Webhilfe öffnen",
 		"SkipToMainMenu": "Das Laden von Mods überspringen",
