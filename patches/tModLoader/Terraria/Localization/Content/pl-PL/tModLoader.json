@@ -75,6 +75,8 @@
 		"BetaModCantPublishError": "Nie możesz opublikować moda zbudowanego na wersji beta tModLoadera",
 		"ModDescriptionMissing": "Plik {0} nie istnieje. Utwórz poprawny opis swojego moda.",
 		"ModDescriptionLengthTooShort": "Opis moda jest za krótki, proszę utwórz poprawny opis w {0}.",
+		// "ModDescriptionInvalid": "Mod description is equal to or too similar to the description template, please create a valid description for your mod by modifying {0}.",
+		// "ModWorkshopDescriptionInvalid": "Workshop description is equal to or too similar to the description template, please create a valid description for your workshop page by modifying {0}. You can also delete {0} if you wish to use {1} as the description of your workshop page.",
 		"ModWorkshopIconResizeWarning": "Zostanie zmieniony rozmiar z {0} na {1}.",
 		"ModUsesDefaultIcon": "Proszę utworzyć własną ikonę dla swojego moda, modyfikując {0}.",
 		"OutdatedModCantPublishError": "Nie możesz opublikować moda zbudowanego na starszej wersji tModLoadera",

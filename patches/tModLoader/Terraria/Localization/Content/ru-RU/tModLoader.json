@@ -75,6 +75,8 @@
 		"BetaModCantPublishError": "Вы не можете опубликовать мод, собранный на бета-версии tModLoader",
 		"ModDescriptionMissing": "Файл {0} отсутствует. Пожалуйста, добавьте корректное описание для вашего мода.",
 		"ModDescriptionLengthTooShort": "Описание мода слишком короткое. Пожалуйста, отредактируйте файл {0}, чтобы указать корректное описание.",
+		// "ModDescriptionInvalid": "Mod description is equal to or too similar to the description template, please create a valid description for your mod by modifying {0}.",
+		// "ModWorkshopDescriptionInvalid": "Workshop description is equal to or too similar to the description template, please create a valid description for your workshop page by modifying {0}. You can also delete {0} if you wish to use {1} as the description of your workshop page.",
 		"ModWorkshopIconResizeWarning": "Размер иконки будет изменён с {0} на {1}.",
 		"ModUsesDefaultIcon": "Пожалуйста, создайте собственную иконку для мода, отредактировав файл {0}.",
 		"OutdatedModCantPublishError": "Вы не можете опубликовать мод, собранный на устаревшей версии tModLoader",
