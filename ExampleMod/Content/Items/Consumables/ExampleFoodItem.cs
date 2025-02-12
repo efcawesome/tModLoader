@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExampleMod.Content.Items.Consumables
 {
+	// Food items have a unique item sprite for their eating and placed visuals. These are explained in the comments.
 	public class ExampleFoodItem : ModItem
 	{
 		public override void SetStaticDefaults() {

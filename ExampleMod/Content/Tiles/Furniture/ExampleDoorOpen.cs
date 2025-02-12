@@ -24,6 +24,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			TileID.Sets.HasOutlines[Type] = true;
 			TileID.Sets.DisableSmartCursor[Type] = true;
 			TileID.Sets.CloseDoorID[Type] = ModContent.TileType<ExampleDoorClosed>();
+			TileID.Sets.DrawTileInSolidLayer[Type] = true; // needed to draw at the correct "layer" for npc that draw below solid tiles like worms
 
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
 
