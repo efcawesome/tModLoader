@@ -181,7 +181,7 @@
  		public static bool[] HasOutlines = Factory.CreateBoolSet(10, 11, 15, 21, 29, 55, 79, 85, 88, 89, 97, 102, 104, 125, 132, 136, 139, 144, 207, 209, 212, 215, 216, 237, 287, 335, 338, 354, 356, 377, 386, 387, 388, 389, 410, 411, 425, 441, 455, 463, 467, 468, 470, 475, 487, 480, 494, 497, 509, 510, 511, 621, 464, 657, 658, 663);
  		public static bool[] AllTiles = Factory.CreateBoolSet(true);
  		public static bool[] Dirt = Factory.CreateBoolSet(0, 668);
-@@ -181,6 +_,14 @@
+@@ -181,10 +_,30 @@
  		public static bool[] HellSpecial = Factory.CreateBoolSet(58, 76, 75);
  		public static bool[] Leaves = Factory.CreateBoolSet(384, 192);
  		public static bool[] tileMossBrick = Factory.CreateBoolSet(false, 512, 513, 514, 515, 516, 517, 535, 537, 540, 626, 628);
@@ -194,9 +194,25 @@
 +		/// <para/> Defaults to <c>true</c>.
 +		/// </summary>
  		public static bool[] GeneralPlacementTiles = Factory.CreateBoolSet(true, 225, 41, 481, 43, 482, 44, 483, 226, 203, 112, 25, 70, 151, 21, 31, 467, 12, 665, 639);
++		/// <summary>
++		/// Indicates that this tile is a basic 2x2 chest. It is important to note that chests must be 2x2 tiles with the typical 2 padding. Deviations from the default layout are not supported and will lead to issues, so following a working template is recommended.
++		/// <para/> <see cref="Main.tileContainer"/> and <see cref="IsAContainer"/> should also be set in tandem.
++		/// </summary>
  		public static bool[] BasicChest = Factory.CreateBoolSet(21, 467);
  		public static bool[] BasicChestFake = Factory.CreateBoolSet(441, 468);
-@@ -231,28 +_,70 @@
++		/// <summary>
++		/// Indicates that this tile is a basic 3x2 dresser. It is important to note that dressers must be 3x2 tiles with the typical 2 padding. Deviations from the default layout are not supported and will lead to issues, so following a working template is recommended.
++		/// <para/> <see cref="Main.tileContainer"/> and <see cref="IsAContainer"/> should also be set in tandem.
++		/// </summary>
+ 		public static bool[] BasicDresser = Factory.CreateBoolSet(88);
++		/// <summary>
++		/// Protects specific tiles from some world generation methods, most notably <see cref="WorldGen.Cavinator(int, int, int)"/> and <see cref="WorldGen.TileRunner(int, int, double, int, int, bool, double, double, bool, bool, int)"/>. Tiles set to false will be immune to being changed by some world generation methods that happen early on in the world generation process while the terrain is being shaped. Some examples include various sandstone and hardened sand tiles, granite, and LihzahrdBrick. Should only need to be set for terrain tiles potentially placed early in world generation that shouldn't be interrupted by ore generation or caves.
++		/// <para/> Defaults to true.
++		/// </summary>
+ 		public static bool[] CanBeClearedDuringGeneration = Factory.CreateBoolSet(true, 396, 400, 401, 397, 398, 399, 404, 368, 367, 226, 237);
+ 		public static List<int> CorruptCountCollection = new List<int> {
+ 			23,
+@@ -231,29 +_,77 @@
  		public static bool[] IsSkippedForNPCSpawningGroundTypeCheck = Factory.CreateBoolSet(false, 421, 422);
  		public static bool[] BlocksStairs = Factory.CreateBoolSet(386, 387, 54, 541);
  		public static bool[] BlocksStairsAbove = Factory.CreateBoolSet(386, 387);
@@ -256,6 +272,9 @@
 +		/// Indicates that the tile is an ore. Used in worldgen code for various purposes and by Fairies.
 +		/// </summary>
  		public static bool[] Ore = Factory.CreateBoolSet(7, 166, 6, 167, 9, 168, 8, 169, 22, 204, 37, 58, 107, 221, 108, 222, 111, 223, 211);
++		/// <summary>
++		/// Indicates that this tile contains items. All chests and dressers should set this. <see cref="Main.tileContainer"/> should also be set in tandem.
++		/// </summary>
  		public static bool[] IsAContainer = Factory.CreateBoolSet(21, 467, 88);
 +		/// <summary>
 +		/// Indicates that the tile is an appropriate tile to be connected to a trigger tile (<see cref="IsATrigger"/>). Used during the "Remove Broken Traps" world generation step to remove wires and tiles in situations where the mechanism or trigger have been orphaned (not connected anymore).
@@ -265,8 +284,12 @@
 +		/// Indicates that the tile is an appropriate tile to be connected to a mechanism tile (<see cref="IsAMechanism"/>). Used during the "Remove Broken Traps" world generation step to remove wires and tiles in situations where the mechanism or trigger have been orphaned (not connected anymore).
 +		/// </summary>
  		public static bool[] IsATrigger = Factory.CreateBoolSet(135, 136, 132, 144, 411, 441, 468);
++		/// <summary>
++		/// If true, <see href="https://terraria.wiki.gg/wiki/Fairies">Fairies</see> can lead the player to this tile. The tile must also set <see cref="Main.tileOreFinderPriority"/> to be eligible. 
++		/// </summary>
  		public static bool[] FriendlyFairyCanLureTo = Factory.CreateBoolSet(8, 169, 21, 467, 107, 108, 111, 221, 222, 223, 211, 12, 665, 639, 236, 227);
  		public static bool[] IgnoredInHouseScore = Factory.CreateBoolSet(4, 3, 73, 82, 83, 84, 386);
+ 		public static bool[] SpreadOverground = Factory.CreateBoolSet(2, 23, 661, 32, 60, 70, 109, 199, 662, 352, 477, 492, 633);
 @@ -954,5 +_,6 @@
  	public const ushort VioletMossBlock = 691;
  	public const ushort RainbowMossBlock = 692;
