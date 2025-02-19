@@ -98,6 +98,7 @@ public partial class Mod
 
 	internal short netID = -1;
 	public short NetID => netID;
+	/// <summary> If true, this mod has a <see cref="NetID"/> assigned. This is mainly useful for checking if a <see cref="ModSide.NoSync"/> mod is present on the server from a client to determine if a <see cref="ModPacket"/> can be sent to the server or not. </summary>
 	public bool IsNetSynced => netID >= 0;
 
 	private IDisposable fileHandle;
@@ -306,15 +307,19 @@ public partial class Mod
 	}
 
 	/// <summary>
-	/// Creates a ModPacket object that you can write to and then send between servers and clients.
+	/// Creates a <see cref="ModPacket"/> object that you can write to and then send between servers and clients.
 	/// </summary>
 	/// <param name="capacity">The capacity.</param>
 	/// <returns></returns>
 	/// <exception cref="System.Exception">Cannot get packet for " + Name + " because it does not exist on the other side</exception>
 	public ModPacket GetPacket(int capacity = 256)
 	{
-		if (netID < 0)
-			throw new Exception("Cannot get packet for " + Name + " because it does not exist on the other side");
+		if (netID < 0) {
+			if (Main.netMode == NetmodeID.SinglePlayer)
+				throw new Exception("GetPacket should only be called during multiplayer");
+			else
+				throw new Exception($"Cannot get packet for {Name} because it does not exist on the {(Main.dedServ ? "client": "server")}. GetPacket should not be called for server-side or client-side mods.");
+		}
 
 		var p = new ModPacket(MessageID.ModPacket, capacity + 5);
 		if (ModNet.NetModCount < 256)
