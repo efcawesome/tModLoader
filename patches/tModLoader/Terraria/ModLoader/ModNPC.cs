@@ -237,6 +237,7 @@ public abstract class ModNPC : ModType<NPC, ModNPC>, ILocalizedModType
 
 	/// <summary>
 	/// Allows you to determine how this NPC behaves. Return false to stop the vanilla AI and the AI hook from being run. Returns true by default.
+	/// <include file = 'CommonDocs.xml' path='Common/AIMethodOrder' />
 	/// </summary>
 	/// <returns></returns>
 	public virtual bool PreAI()
@@ -246,12 +247,16 @@ public abstract class ModNPC : ModType<NPC, ModNPC>, ILocalizedModType
 
 	/// <summary>
 	/// Allows you to determine how this NPC behaves. This will only be called if PreAI returns true.
+	/// <include file = 'CommonDocs.xml' path='Common/AIMethodOrder' />
 	/// </summary>
 	public virtual void AI()
 	{
 	}
 
-	//Allows you to determine how this NPC behaves. This will be called regardless of what PreAI returns.
+	/// <summary>
+	/// Allows you to determine how any NPC behaves. This will be called regardless of what PreAI returns.
+	/// <include file = 'CommonDocs.xml' path='Common/AIMethodOrder' />
+	/// </summary>
 	public virtual void PostAI()
 	{
 	}
