@@ -593,6 +593,7 @@ jobs:
           branch: ${{github.ref}}
       
       # Publish new version of tModLoader to Steam
+      # If this step is failing for preview builds (Failed to commit build), we forgot to add a new branch for this month on Steam. 
       - name: Attempt run_app_build_http 
         shell: bash
         run: |
