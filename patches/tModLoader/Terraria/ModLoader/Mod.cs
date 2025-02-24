@@ -71,6 +71,10 @@ public partial class Mod
 	/// </summary>
 	public bool MusicAutoloadingEnabled { get; init; } = true;
 	/// <summary>
+	/// Whether or not all music loaded by this mod will automatically have <see cref="MusicID.Sets.SkipsVolumeRemap"/> set to true.
+	/// </summary>
+	public bool MusicSkipsVolumeRemap { get; init; } = false;
+	/// <summary>
 	/// Whether or not this mod will automatically add images in the "Backgrounds" folder as background textures to the game. This means you do not need to manually call <see cref="BackgroundTextureLoader.AddBackgroundTexture(Mod, string)"/>.
 	/// </summary>
 	public bool BackgroundAutoloadingEnabled { get; init; } = true;
