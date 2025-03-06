@@ -1499,6 +1499,24 @@
  		if (aiStyle == 1) {
  			AI_001();
  		}
+@@ -17290,6 +_,8 @@
+ 							continue;
+ 
+ 						if (type == 10) {
++							if (!TileLoader.Convert(num96, num97, BiomeConversionID.PurificationPowder))
++								goto SkipPurificationConversion;
+ 							if (Main.tile[num96, num97].type == 23 || Main.tile[num96, num97].type == 199) {
+ 								Main.tile[num96, num97].type = 2;
+ 								WorldGen.SquareTileFrame(num96, num97);
+@@ -17348,6 +_,8 @@
+ 								WorldGen.Convert(num96, num97, 4, 1);
+ 						}
+ 
++					    SkipPurificationConversion:
++
+ 						if (!flag3)
+ 							continue;
+ 
 @@ -24212,7 +_,7 @@
  					int num799 = (int)base.Center.Y / 16;
  					for (int num800 = num798 - num797; num800 <= num798 + num797; num800++) {
