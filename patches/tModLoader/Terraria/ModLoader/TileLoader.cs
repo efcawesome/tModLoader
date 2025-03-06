@@ -193,7 +193,6 @@ public static class TileLoader
 		Array.Resize(ref GameContent.Metadata.TileMaterials.MaterialsByTileId, nextTile);
 		Array.Resize(ref HouseUtils.BlacklistedTiles, nextTile);
 		Array.Resize(ref HouseUtils.BeelistedTiles, nextTile);
-		Array.Resize(ref tileConversionDelegates, nextTile);
 
 		for (int i = 0; i < nextTile; i++) { //oh dear
 			Array.Resize(ref Main.tileMerge[i], nextTile);
@@ -208,7 +207,7 @@ public static class TileLoader
 			TileObjectData._data.Add(null);
 		}
 
-		tileConversionDelegates = new List<ConvertTile>[TileID.Count][];
+		tileConversionDelegates = new List<ConvertTile>[nextTile][];
 
 		//Hooks
 
