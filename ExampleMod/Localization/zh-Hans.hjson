@@ -282,7 +282,7 @@ Mods: {
 				/* Tooltip:
 					'''
 					Used by the Clentaminator
-					Spreads the underworld
+					Spreads the example
 					''' */
 			}
 
@@ -1137,7 +1137,11 @@ Mods: {
 
 			ExampleHellSolution: {
 				// DisplayName: Example Hell Solution
-				// Tooltip: ""
+				/* Tooltip:
+					'''
+					Used by the Clentaminator
+					Spreads the underworld
+					''' */
 			}
 		}
 
