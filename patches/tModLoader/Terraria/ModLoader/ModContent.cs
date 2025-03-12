@@ -556,6 +556,7 @@ public static class ModContent
 		// BuffID.Search = IdDictionary.Create<BuffID, int>();
 
 		CreativeItemSacrificesCatalog.Instance.Initialize();
+		ContentSamples.CreativeResearchItemPersistentIdOverride.Clear();
 		ContentSamples.Initialize();
 		SetupBestiary();
 
