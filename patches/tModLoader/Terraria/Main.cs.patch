@@ -5550,6 +5550,21 @@
  		CaptureManager.Instance.Dispose();
  		audioSystem.Dispose();
  	}
+@@ -39109,6 +_,14 @@
+ 
+ 	public static Microsoft.Xna.Framework.Color hslToRgb(Vector3 hslVector) => hslToRgb(hslVector.X, hslVector.Y, hslVector.Z);
+ 
++	/// <summary>
++	/// Converts a "Hue, Saturation, and Luminance" (HSL) representation (<see href="https://en.wikipedia.org/wiki/HSL_and_HSV">HSL Wikipedia page</see>) of a color  to a <see cref="Color"/>. Input values should range from 0f to 1f. This differs from other representations of HSL, where the hue is denoted as a degree from 0 to 360, so divide by 360f if converting from that representation. A fully saturated color can be retrieved using 1f for <paramref name="Saturation"/> and 0.5f for <paramref name="Luminosity"/>.
++	/// <para/> This is most commonly used to smoothly transition between colors by passing in hue values that are the result of interpolating between values. Doing math using an HSL representation of a Color is often easier than doing math on an RGB representation of a Color.
++	/// <para/> This example generated a random fully saturated color: <c>Color color = Main.hslToRgb(Main.rand.NextFloat(), 1f, 0.5f);</c>
++	/// <para/> This example generates a color based on the projectile rotation:
++	/// <code>float hue = Projectile.rotation / MathHelper.TwoPi;
++	/// Color color = Main.hslToRgb(hue, 1f, 0.5f);</code>
++	/// </summary>
+ 	public static Microsoft.Xna.Framework.Color hslToRgb(float Hue, float Saturation, float Luminosity, byte a = byte.MaxValue)
+ 	{
+ 		byte r;
 @@ -39408,8 +_,11 @@
  		screenLastPosition = screenPosition;
  		screenPosition.Y = (float)(worldSurface * 16.0 - (double)screenHeight);
