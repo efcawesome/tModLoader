@@ -1930,11 +1930,15 @@
  			return false;
  
  		if (!InWorld(i, j, 2))
-@@ -39342,7 +_,34 @@
+@@ -39342,7 +_,30 @@
  		return true;
  	}
  
 -	public static void Convert(int i, int j, int conversionType, int size = 4)
++	// legacy overload for abi compat, remove in 1.4.5
++	/// <inheritdoc cref="Convert(int, int, int, int, bool, bool)"/>
++	public static void Convert(int i, int j, int conversionType, int size) => Convert(i, j, conversionType, size, tiles: true, walls: true);
++
 +	/// <summary>
 +	/// Converts biome variant tiles and walls to a target biome.<br/>
 +	/// Converts a 9x9 square by default, but can be adjusted with the <paramref name="size"/> parameter.
@@ -1952,14 +1956,6 @@
 +	/// This optional parameter, which defaults to 4, determines the "radius" of that square in tiles, counting outward from the central tile.<br/>
 +	/// Set to 0 if you only want to convert a single tile. In other cases, use this parameter wisely.
 +	/// </param>
-+	public static void Convert(int i, int j, int conversionType, int size = 4) => Convert(i, j, conversionType, size, true, true);
-+
-+	/// <inheritdoc cref="Convert(int, int, int, int)"/>
-+	/// <param name="tiles">If the conversion should affect tiles</param>
-+	/// <param name="walls">If the conversion should affect walls</param>
-+	public static void Convert(int i, int j, int conversionType, bool tiles = true, bool walls = true) => Convert(i, j, conversionType, 0, tiles, walls);
-+
-+	/// <inheritdoc cref="Convert(int, int, int, int)"/>
 +	/// <param name="tiles">If the conversion should affect tiles</param>
 +	/// <param name="walls">If the conversion should affect walls</param>
 +	public static void Convert(int i, int j, int conversionType, int size = 4, bool tiles = true, bool walls = true)
