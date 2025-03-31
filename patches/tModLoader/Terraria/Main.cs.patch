@@ -1523,13 +1523,15 @@
  					Console.WriteLine("");
  					Console.Write(Language.GetTextValue("CLI.EnterServerPassword"));
  					Netplay.ServerPassword = ReadLineInput();
-@@ -4563,6 +_,10 @@
+@@ -4563,6 +_,12 @@
  		catch {
  		}
  
 +		// Run one tick to JIT all the game content now rather than when a player connects
-+		Logging.ServerConsoleLine("Running one update...");
-+		Update(new GameTime());
++		Logging.ServerConsoleLine("Running engine preload...");
++		Debug.Assert(!IsEnginePreloaded);
++		IsEnginePreloaded = true;
++		OnEnginePreload?.Invoke();
 +
  		if (WorldGen.loadFailed || !WorldGen.loadSuccess) {
  			WriteFancyWorldLoadErrorToConsole();
