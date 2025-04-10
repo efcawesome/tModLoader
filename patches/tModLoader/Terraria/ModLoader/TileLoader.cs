@@ -66,6 +66,7 @@ public static class TileLoader
 	private delegate void DelegateKillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem);
 	private static DelegateKillTile[] HookKillTile;
 	private static Func<int, int, int, bool>[] HookCanExplode;
+	private static Func<int, int, int, bool>[] HookCanBeTeleportedTo;
 	private static Action<int, int, int, bool>[] HookNearbyEffects;
 	private delegate void DelegateModifyLight(int i, int j, int type, ref float r, ref float g, ref float b);
 	private static DelegateModifyLight[] HookModifyLight;
@@ -296,7 +297,7 @@ public static class TileLoader
 	//  and add && !checkStay to if statement that sets flag4
 	public static void CheckModTile(int i, int j, int type)
 	{
-		if(type <= TileID.Count) {
+		if (type <= TileID.Count) {
 			return;
 		}
 		if (WorldGen.destroyObject) {

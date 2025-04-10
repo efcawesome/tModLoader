@@ -7192,6 +7192,16 @@
  
  			AchievementsHelper.HandleSpecialEvent(this, 0);
  		}
+@@ -35442,6 +_,9 @@
+ 		if ((Main.tile[num, num2].wall == 87 && !NPC.downedPlantBoss && (Main.remixWorld || (double)num2 > Main.worldSurface)) || Collision.SolidCollision(pointPoisition, width, height))
+ 			return;
+ 
++		if (!CombinedHooks.CanBeTeleportedTo(this, pointPoisition, num, num2, "TeleportRod"))
++			return;
++
+ 		Teleport(pointPoisition, 1);
+ 		NetMessage.SendData(65, -1, -1, null, 0, whoAmI, pointPoisition.X, pointPoisition.Y, 1);
+ 		if (sItem.type != 1326)
 @@ -35479,7 +_,10 @@
  			}
  		}
@@ -8917,6 +8927,16 @@
  			adjTile[n] = false;
  			oldAdjTile[n] = false;
  		}
+@@ -43304,6 +_,9 @@
+ 			if ((settings.avoidWalls && tileSafely.wall > 0) || (settings.avoidAnyLiquid && Collision.WetCollision(vector, num4, height)) || (settings.avoidLava && Collision.LavaCollision(vector, num4, height)) || (settings.avoidHurtTiles && Collision.AnyHurtingTiles(vector, num4, height)) || Collision.SolidCollision(vector, num4, height) || num6 >= settings.maximumFallDistanceFromOrignalPoint - 1)
+ 				continue;
+ 
++			if (!CombinedHooks.CanBeTeleportedTo(this, vector, i, j, "CheckForGoodTeleportationSpot"))
++				continue;
++
+ 			Vector2 vector2 = Vector2.UnitX * 16f;
+ 			if (Collision.TileCollision(vector - vector2, vector2, width, height, fallThrough: false, fall2: false, (int)gravDir) != vector2)
+ 				continue;
 @@ -43332,11 +_,29 @@
  		int questsDone = anglerQuestsFinished;
  		float anglerRewardRarityMultiplier = GetAnglerRewardRarityMultiplier(questsDone);
