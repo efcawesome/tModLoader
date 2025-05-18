@@ -157,8 +157,10 @@ namespace ExampleMod.Content.NPCs
 			if (Main.netMode != NetmodeID.Server && NPC.life <= 0) {
 				// Retrieve the gore types. This NPC has shimmer and party variants for head, arm, and leg gore. (12 total gores)
 				string variant = "";
-				if (NPC.IsShimmerVariant) variant += "_Shimmer";
-				if (NPC.altTexture == 1) variant += "_Party";
+				if (NPC.IsShimmerVariant)
+					variant += "_Shimmer";
+				if (NPC.altTexture == 1)
+					variant += "_Party";
 				int hatGore = NPC.GetPartyHatGore();
 				int headGore = Mod.Find<ModGore>($"{Name}_Gore{variant}_Head").Type;
 				int armGore = Mod.Find<ModGore>($"{Name}_Gore{variant}_Arm").Type;
@@ -177,7 +179,7 @@ namespace ExampleMod.Content.NPCs
 		}
 
 		public override void OnSpawn(IEntitySource source) {
-			if(source is EntitySource_SpawnNPC) {
+			if (source is EntitySource_SpawnNPC) {
 				// A TownNPC is "unlocked" once it successfully spawns into the world.
 				TownNPCRespawnSystem.unlockedExamplePersonSpawn = true;
 			}

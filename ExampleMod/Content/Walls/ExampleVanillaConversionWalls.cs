@@ -1,11 +1,11 @@
 using ExampleMod.Content.Items;
+using ExampleMod.Content.Tiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using ExampleMod.Content.Tiles;
 
 namespace ExampleMod.Content.Walls
 {

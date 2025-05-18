@@ -67,7 +67,7 @@ namespace ExampleMod.Content.NPCs
 			Rectangle hitbox = NPC.Hitbox;
 			foreach (Item item in Main.item) {
 				//Pickup the items only if the NPC touches them and they aren't already being grabbed by a player
-				if (item.active && !item.beingGrabbed && item.type == ModContent.ItemType<ExampleItem>() &&	hitbox.Intersects(item.Hitbox)) {
+				if (item.active && !item.beingGrabbed && item.type == ModContent.ItemType<ExampleItem>() && hitbox.Intersects(item.Hitbox)) {
 					item.active = false;
 					StolenItems += item.stack;
 

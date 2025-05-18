@@ -191,8 +191,8 @@ namespace ExampleMod.Content.Projectiles
 						}
 						break;
 					}
-				case AIState.UnusedState: // Projectile.ai[0] == 3; This case is actually unused, but maybe a Terraria update will add it back in, or maybe it is useless, so I left it here.
-					{
+				// Projectile.ai[0] == 3; This case is actually unused, but maybe a Terraria update will add it back in, or maybe it is useless, so I left it here.
+				case AIState.UnusedState: {
 						if (!player.controlUseItem) {
 							CurrentAIState = AIState.ForcedRetracting; // Move to super retracting mode if the player taps
 							StateTimer = 0f;
@@ -228,8 +228,7 @@ namespace ExampleMod.Content.Projectiles
 						player.ChangeDir((player.Center.X < Projectile.Center.X).ToDirectionInt());
 						break;
 					}
-				case AIState.ForcedRetracting:
-					{
+				case AIState.ForcedRetracting: {
 						Projectile.tileCollide = false;
 						Vector2 unitVectorTowardsPlayer = Projectile.DirectionTo(mountedCenter).SafeNormalize(Vector2.Zero);
 						if (Projectile.Distance(mountedCenter) <= maxForcedRetractSpeed) {
