@@ -41,7 +41,7 @@ namespace ExampleMod.Content.Tiles
 		//This code is called when the game attempts to convert our hallowed tile into a new biome
 		public override void Convert(int i, int j, int conversionType) {
 			switch (conversionType) {
-				// Purification powder doesn't convert hallow tiles back into purity, so we don't check for BiomeCoversionID.PurificationPowder
+				// Purification powder doesn't convert hallow tiles back into purity, so we don't check for BiomeConversionID.PurificationPowder
 				// And Chlorophyte conversion is usually the same as purity, except it tries to create jungle tiles and destroy plants. In this case, neither is needed to it's gonna have the exact same behavior as purity
 				case BiomeConversionID.Chlorophyte:
 				case BiomeConversionID.Purity:

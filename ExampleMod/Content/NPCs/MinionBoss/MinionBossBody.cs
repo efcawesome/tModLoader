@@ -175,7 +175,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 			// 1. Trophy
 			// 2. Classic Mode ("not expert")
 			// 3. Expert Mode (usually just the treasure bag)
-			// 4. Master Mode (relic first, pet last, everything else inbetween)
+			// 4. Master Mode (relic first, pet last, everything else in between)
 
 			// Trophies are spawned with 1/10 chance
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Placeable.Furniture.MinionBossTrophy>(), 10));
@@ -449,7 +449,7 @@ namespace ExampleMod.Content.NPCs.MinionBoss
 				// "Why is this not in the same code that sets FirstStageDestination?" Because in multiplayer it's ran by the server.
 				// The client has to know when the destination changes a different way. Keeping track of the previous ticks' destination is one way
 				if (Main.netMode != NetmodeID.Server) {
-					// For visuals regarding NPC position, netOffset has to be concidered to make visuals align properly
+					// For visuals regarding NPC position, netOffset has to be considered to make visuals align properly
 					NPC.position += NPC.netOffset;
 
 					// Draw a line between the NPC and its destination, represented as dusts every 20 pixels
