@@ -302,7 +302,7 @@ namespace ExampleMod.Content.Projectiles
 
 			Projectile.timeLeft = 2; // Makes sure the flail doesn't die (good when the flail is resting on the ground)
 			player.heldProj = Projectile.whoAmI;
-			player.SetDummyItemTime(2); //Add a delay so the player can't button mash the flail
+			player.SetDummyItemTime(2); // Add a delay so the player can't button mash the flail
 			player.itemRotation = Projectile.DirectionFrom(mountedCenter).ToRotation();
 			if (Projectile.Center.X < mountedCenter.X) {
 				player.itemRotation += (float)Math.PI;

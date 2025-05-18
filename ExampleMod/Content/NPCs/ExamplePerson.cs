@@ -262,7 +262,7 @@ namespace ExampleMod.Content.NPCs
 
 			NumberOfTimesTalkedTo++;
 			if (NumberOfTimesTalkedTo >= 10) {
-				//This counter is linked to a single instance of the NPC, so if ExamplePerson is killed, the counter will reset.
+				// This counter is linked to a single instance of the NPC, so if ExamplePerson is killed, the counter will reset.
 				chat.Add(Language.GetTextValue("Mods.ExampleMod.Dialogue.ExamplePerson.TalkALot"));
 			}
 
