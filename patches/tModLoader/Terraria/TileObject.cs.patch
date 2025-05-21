@@ -4,7 +4,7 @@
  	public int yCoord;
  	public int type;
  	public int style;
-+	/// <summary> Note: The index of the alternate within the <see cref="TileObjectData.Alternates"/>, not the alternate placement style offset (<see cref="TileObjectData.Style"/>) </summary>
++	/// <summary> Note: The index of the alternate within the <see cref="TileObjectData.Alternates"/>, not the alternate placement style offset (<see cref="TileObjectData.Style"/>). This counts from 1, a value of 0 means it is not an alternate. </summary>
  	public int alternate;
  	public int random;
  	public static TileObject Empty = default(TileObject);
