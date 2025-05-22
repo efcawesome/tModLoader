@@ -1137,8 +1137,10 @@ public abstract class ModPlayer : ModType<Player, ModPlayer>, IIndexed
 	}
 
 	/// <summary>
-	/// Allows you to modify the visibility of layers about to be drawn. Layers can be accessed via <see cref="PlayerDrawLayerLoader.Layers"/>
-	/// <para/> Called on local and remote clients.
+	/// Allows you to modify the visibility of layers about to be drawn. All layers can be accessed via <see cref="PlayerDrawLayerLoader.Layers"/>. Individual layers can be accessed by the <see cref="PlayerDrawLayers"/> fields for vanilla layers or <see cref="ModContent.GetInstance{T}"/> for modded layers. The <see cref="PlayerDrawLayer.Hide"/> method is how a layer can be hidden.
+	/// <br/><br/> For example: <code>PlayerDrawLayers.Wings.Hide();
+	/// ModContent.GetInstance&lt;ExamplePlayerDrawLayer&gt;().Hide();</code>
+	/// <br/><br/> Called on local and remote clients.
 	/// </summary>
 	/// <param name="drawInfo"></param>
 	public virtual void HideDrawLayers(PlayerDrawSet drawInfo)
