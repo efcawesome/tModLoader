@@ -1389,4 +1389,14 @@ public abstract class ModPlayer : ModType<Player, ModPlayer>, IIndexed
 	{
 		return true;
 	}
+
+	/// <summary>
+	/// Allows to execute some code if the equipment loadout was switched.
+	/// <br/><br/> Called on the server and on all clients.
+	/// </summary>
+	/// <param name="oldLoadoutIndex">The old loadout index.</param>
+	/// <param name="loadoutIndex">The new loadout index.</param>
+	public virtual void OnEquipmentLoadoutSwitched(int oldLoadoutIndex, int loadoutIndex)
+	{
+	}
 }
