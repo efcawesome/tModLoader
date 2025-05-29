@@ -4140,7 +4140,7 @@
 +				if (modProjectile != null && ModContent.RequestIfExists<Texture2D>(modProjectile.GlowTexture, out var glowTexture, AssetRequestMode.ImmediateLoad)) {
 +					EntitySpriteDraw(
 +						glowTexture.Value,
-+						proj.position + screenPosition + new Vector2(num138 + num137, proj.height / 2 + proj.gfxOffY),
++						proj.position - screenPosition + new Vector2(num138 + num137, proj.height / 2 + proj.gfxOffY),
 +						new Rectangle(0, y27, TextureAssets.Projectile[proj.type].Width(), num408 - 1),
 +						new Color(250, 250, 250, proj.alpha), proj.rotation,
 +						new Vector2(num138, proj.height / 2 + num136),
