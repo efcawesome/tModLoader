@@ -1864,6 +1864,14 @@
  
  		teamColor[0] = Microsoft.Xna.Framework.Color.White;
  		teamColor[1] = new Microsoft.Xna.Framework.Color(218, 59, 59);
+@@ -7387,6 +_,7 @@
+ 		debuff[147] = true;
+ 		debuff[148] = true;
+ 		debuff[149] = true;
++		debuff[BuffID.ShadowFlame] = true; // TML: Fix vanilla omission (#4668)
+ 		debuff[156] = true;
+ 		debuff[157] = true;
+ 		debuff[350] = true;
 @@ -7706,13 +_,24 @@
  		persistentBuff[77] = true;
  		persistentBuff[78] = true;
