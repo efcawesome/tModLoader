@@ -517,7 +517,7 @@
  	public bool fireWalk;
  	public bool channel;
  	public int step = -1;
-@@ -961,24 +_,99 @@
+@@ -961,38 +_,124 @@
  	public int golferScoreAccumulated;
  	public int bartenderQuestLog;
  	public bool downedDD2EventAnyDifficulty;
@@ -617,9 +617,14 @@
  	public bool spaceGun;
 +	/// <summary> The players gravity direction. <b>1</b> if normal, <b>-1</b> if reversed. <para/> Defaults to <b>1</b>.</summary>
  	public float gravDir = 1f;
++	/// <summary> Applies the "20% chance to save ammo" effect (20% ammo conservation) specific to Chlorophyte Helmet. <include file = 'CommonDocs.xml' path='Common/AmmoConservation' /> </summary>
  	public bool chloroAmmoCost80;
++	/// <summary> Applies the "10% chance to save ammo" effect (10% ammo conservation). <include file = 'CommonDocs.xml' path='Common/AmmoConservation' /> </summary>
  	public bool huntressAmmoCost90;
-@@ -987,12 +_,17 @@
++	/// <summary> Applies the "20% chance to save ammo" effect (20% ammo conservation). <include file = 'CommonDocs.xml' path='Common/AmmoConservation' /> </summary>
+ 	public bool ammoCost80;
++	/// <summary> Applies the "25% chance to save ammo" effect (25% ammo conservation). <include file = 'CommonDocs.xml' path='Common/AmmoConservation' /> </summary>
+ 	public bool ammoCost75;
  	public int stickyBreak;
  	public bool magicQuiver;
  	public bool magmaStone;
@@ -627,7 +632,9 @@
  	public bool lavaRose;
  	public bool hasMoltenQuiver;
  	public int phantasmTime;
++	/// <summary> Applies the "20% chance to save ammo" effect (20% ammo conservation) specific to <see cref="BuffID.AmmoBox"/>. Does not apply to consumables. <include file = 'CommonDocs.xml' path='Common/AmmoConservation' /> </summary>
  	public bool ammoBox;
++	/// <summary> Applies the "20% chance to save ammo" effect (20% ammo conservation) specific to <see cref="BuffID.AmmoReservation"/>. Does not apply to consumables. <include file = 'CommonDocs.xml' path='Common/AmmoConservation' /> </summary>
  	public bool ammoPotion;
  	public bool chaosState;
 +
