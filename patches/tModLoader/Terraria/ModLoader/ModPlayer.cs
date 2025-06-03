@@ -151,9 +151,10 @@ public abstract class ModPlayer : ModType<Player, ModPlayer>, IIndexed
 	}
 
 	/// <summary>
-	/// <br/> Allows you to copy information that you intend to sync between server and client to the <paramref name="targetCopy"/> parameter.
-	/// <br/> You would then use the <see cref="SendClientChanges"/> hook to compare against that data and decide what needs synchronizing.
-	/// <br/> This hook is called with every call of the <see cref="Player.clientClone"/> method.
+	/// Allows you to copy information to the <paramref name="targetCopy"/> parameter that you intend to sync between this local client and both the server and other clients. 
+	/// <br/><br/> You would then use the <see cref="SendClientChanges"/> hook to compare against that data and decide what needs synchronizing, sending that data in a <see cref="ModPacket"/> to the server. The server will then need to relay that information to the other remote clients. 
+	/// <br/><br/> This hook is called with every call of the <see cref="Player.clientClone"/> method.
+	/// <br/><br/> See <see href="https://github.com/tModLoader/tModLoader/wiki/Basic-Netcode#player--modplayer">the Player / ModPlayer section of the Basic Netcode wiki page</see> for more information.
 	/// <br/>
 	/// <br/> <b>NOTE:</b> For performance reasons, avoid deep cloning or copying any excessive information.
 	/// <br/> <b>NOTE:</b> Using <see cref="Item.CopyNetStateTo"/> is the recommended way of creating item snapshots.
@@ -164,7 +165,8 @@ public abstract class ModPlayer : ModType<Player, ModPlayer>, IIndexed
 	}
 
 	/// <summary>
-	/// Allows you to sync information about this player between server and client. The toWho and fromWho parameters correspond to the remoteClient/toClient and ignoreClient arguments, respectively, of NetMessage.SendData/ModPacket.Send. The newPlayer parameter is whether or not the player is joining the server (it is true on the joining client).
+	/// Allows you to sync information about this player between server and client. The toWho and fromWho parameters correspond to the remoteClient/toClient and ignoreClient arguments, respectively, of NetMessage.SendData/ModPacket.Send. They should be passed in as-is. The newPlayer parameter is whether or not the player is joining the server (it is true on the joining client).
+	/// <br/><br/> This hook will be called on the local client to send the data to the server and also on the server to send the data to other clients.
 	/// </summary>
 	/// <param name="toWho"></param>
 	/// <param name="fromWho"></param>
@@ -174,7 +176,9 @@ public abstract class ModPlayer : ModType<Player, ModPlayer>, IIndexed
 	}
 
 	/// <summary>
-	/// Allows you to sync any information that has changed between the server and client. Here, you should check the information you have copied in the clientClone parameter; if they differ between this player and the clientPlayer parameter, then you should send that information using NetMessage.SendData or ModPacket.Send.
+	/// Allows you to sync any information that has changed for this ModPlayer from this local client to the server. The server will need to take those changes and relay them to other remote clients.
+	/// <br/><br/> Here, you should check the information you have copied in the clientClone parameter; if they differ between this ModPlayer and the clientPlayer parameter, then you should send that information using NetMessage.SendData or ModPacket.Send. All of the differences are the changes that occurred during the last game update for the local player.
+	/// <br/><br/> See <see href="https://github.com/tModLoader/tModLoader/wiki/Basic-Netcode#player--modplayer">the Player / ModPlayer section of the Basic Netcode wiki page</see> for more information.
 	/// </summary>
 	/// <param name="clientPlayer"></param>
 	public virtual void SendClientChanges(ModPlayer clientPlayer)
