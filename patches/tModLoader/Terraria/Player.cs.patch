@@ -7533,6 +7533,17 @@
  				if (Main.rand.Next(3) == 0)
  					num11--;
  			}
+@@ -36987,8 +_,9 @@
+ 		}
+ 		else if (sItem.type == 3053) {
+ 			bool flag3 = false;
+-			if (itemAnimation <= sItem.useTime + 1)
++			if (itemAnimation <= itemTimeMax) { // TML: Change from sItem.useTime + 1 to more correctly account for use speed hook adjustments.
+ 				flag3 = true;
++			}
+ 
+ 			Vector2 vector10 = new Vector2(num2, num3);
+ 			vector10.Normalize();
 @@ -38410,10 +_,14 @@
  		projType = 721;
  		Item item = inventory[selectedItem];
