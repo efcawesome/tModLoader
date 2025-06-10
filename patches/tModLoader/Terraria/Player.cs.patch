@@ -321,8 +321,14 @@
  	public float townNPCs;
  	public double headFrameCounter;
  	public double bodyFrameCounter;
-@@ -752,12 +_,20 @@
+@@ -750,14 +_,26 @@
+ 	public float maxRegenDelay;
+ 	public int sign = -1;
  	public bool editedChestName;
++	/// <summary>
++	/// How long the player will be unable to use any item after the currently active item usage completes. Derived from <see cref="Item.reuseDelay"/>.
++	/// <include file = 'CommonDocs.xml' path='Common/PlayerItemUseAnimation' />
++	/// </summary>
  	public int reuseDelay;
  	public int aggro;
 +	/// <summary>
@@ -495,6 +501,14 @@
  	public bool[] hideVisibleAccessory = new bool[10];
  	public BitsByte hideMisc = (byte)0;
  	public Rectangle headFrame;
+@@ -881,6 +_,7 @@
+ 	public bool controlUp;
+ 	public bool controlDown;
+ 	public bool controlJump;
++	/// <summary> Player is attempting to use an item, set mainly by pressing the "Use Item" keybind (Typically left mouse button). </summary>
+ 	public bool controlUseItem;
+ 	public bool controlUseTile;
+ 	public bool controlThrow;
 @@ -910,6 +_,7 @@
  	public bool releaseCreativeMenu;
  	public bool tileInteractionHappened;
@@ -1023,7 +1037,7 @@
  	public int cLight;
  	public int cYorai;
  	public int cPortableStool;
-@@ -1458,6 +_,12 @@
+@@ -1458,7 +_,16 @@
  	public int cMinion;
  	public int cLeinShampoo;
  	public int cFlameWaker;
@@ -1034,8 +1048,45 @@
 +	/// For example, <c>return player.ownedProjectileCounts[Item.shoot] &lt; 1;</c> in <see cref="ModItem.CanUseItem"/> could prevent a player using the item if the projectile the item spawns is already in the game world for the player.
 +	/// </summary>
  	public int[] ownedProjectileCounts = new int[ProjectileID.Count];
++	/// <summary>
++	/// Sets the specified NPC types as friendly to this player. Used by <see cref="ItemID.RoyalGel"/>. Friendly NPC won't target or deal contact damage to the player.
++	/// </summary>
  	public bool[] npcTypeNoAggro = new bool[NPCID.Count];
  	public int lastPortalColorIndex;
+ 	public int _portalPhysicsTime;
+@@ -1468,9 +_,32 @@
+ 	public Vector2 MinionRestTargetPoint = Vector2.Zero;
+ 	public int MinionAttackTargetNPC = -1;
+ 	public List<Point> TouchedTiles = new List<Point>();
++	/// <summary>
++	/// The remaining number of frames the current item animation will last.
++	/// <br/><br/> When an item is used, this and <see cref="itemAnimationMax"/> are set to a value derived from the item's <see cref="Item.useAnimation"/> and the applicable use animation multipliers, then this counts down towards 0 each game update.
++	/// <br/><br/> Note that the item animation (<see cref="itemAnimation"/>) doesn't necessarily match or sync with the item use time. An item being animated does not necessarily mean the item is being "used".
++	/// <include file = 'CommonDocs.xml' path='Common/PlayerItemUseAnimation' />
++	/// </summary>
+ 	public int itemAnimation;
++	/// <summary>
++	/// The total number of frames the current item animation will last.
++	/// <br/><br/> When an item is used, this and <see cref="itemAnimation"/> are set to a value derived from the item's <see cref="Item.useTime"/> and the applicable use animation multipliers, then <see cref="itemTime"/> counts down towards 0 each game update.
++	/// <include file = 'CommonDocs.xml' path='Common/PlayerItemUseAnimation' />
++	/// </summary>
+ 	public int itemAnimationMax;
++	/// <summary>
++	/// The remaining number of frames the current item usage will last.
++	/// <br/><br/> When an item is used, this and <see cref="itemTimeMax"/> are set to a value derived from the item's <see cref="Item.useTime"/> and the applicable use time multipliers, then this counts down towards 0 each game update.
++	/// <br/><br/> Note that the item animation (<see cref="itemAnimation"/>) doesn't necessarily match or sync with the item use time. An item being animated does not necessarily mean the item is being "used".
++	/// <br/><br/> <see cref="ItemTimeIsZero"/> is a helper property to check if this value is 0.
++	/// <include file = 'CommonDocs.xml' path='Common/PlayerItemUseAnimation' />
++	/// </summary>
+ 	public int itemTime;
++	/// <summary>
++	/// The total number of frames the current item usage will last.
++	/// <br/><br/> When an item is used, this and <see cref="itemTime"/> are set to a value derived from the item's <see cref="Item.useTime"/> and the applicable use time multipliers, then <see cref="itemTime"/> counts down towards 0 each game update.
++	/// <include file = 'CommonDocs.xml' path='Common/PlayerItemUseAnimation' />
++	/// </summary>
+ 	public int itemTimeMax;
+ 	public int toolTime;
+ 	public static int BlockInteractionWithProjectiles = 3;
 @@ -1507,7 +_,7 @@
  	private int[] unlitTorchY = new int[maxTorchAttacks];
  	private static int[] _torchAttackPosX = new int[400];
@@ -1187,8 +1238,14 @@
  	public bool isLockedToATile {
  		get {
  			if (!sitting.isSitting)
-@@ -2155,7 +_,10 @@
+@@ -2153,9 +_,16 @@
  
+ 	public bool HasMinionAttackTargetNPC => MinionAttackTargetNPC != -1;
+ 
++	/// <summary>
++	/// Evaluates to <see langword="true"/> if the item usage is in it's first frame. Equivalent to <c>itemTime == 0</c>. Note that this particular property is only valid to be used in <see cref="ModItem.UseItem(Player)"/> and <see cref="ModItem.UseAnimation(Player)"/> hooks.
++	/// <br/><br/> <see href="https://github.com/tModLoader/tModLoader/blob/stable/ExampleMod/Content/Items/Tools/ExamplePickaxe.cs">ExamplePickaxe</see> uses this to run code once per swing.
++	/// </summary>
  	public bool ItemTimeIsZero => itemTime == 0;
  
 -	public bool ItemAnimationJustStarted => itemAnimation == itemAnimationMax - 1;
@@ -1229,13 +1286,18 @@
  	public void ApplyItemTime(Item sItem)
  	{
  		SetItemTime(sItem.useTime);
-@@ -2354,6 +_,17 @@
+@@ -2354,7 +_,28 @@
  	{
  		SetItemTime((int)((float)sItem.useTime * multiplier));
  	}
 +	*/
-+
+ 
 +	//TML: Full remake of the above methods.
++	/// <summary>
++	/// Handles the internal logic of starting an individual item usage. Can be used to manually start an item usage outside of the normal logic.
++	/// <br/><br/> The provided <paramref name="multiplier"/>, if provided, is combined with the player's use time multipliers to scale the Item's <see cref="Item.useTime"/>. The resulting value will be used to set <see cref="Player.itemTime"/>, starting an item usage.
++	/// <include file = 'CommonDocs.xml' path='Common/PlayerItemUseAnimation' />
++	/// </summary>
 +	public void ApplyItemTime(Item sItem, float multiplier = 1, bool? callUseItem = null)
 +	{
 +		if ((callUseItem ?? ItemTimeIsZero) && ItemLoader.UseItem(sItem, this) == false)
@@ -1244,9 +1306,15 @@
 +		SetItemTime(CombinedHooks.TotalUseTime(sItem.useTime * multiplier, this, sItem));
 +		ItemUsesThisAnimation++;
 +	}
- 
++
++	/// <summary>
++	/// Sets <see cref="itemTime"/> and <see cref="itemAnimation"/> to the provided <paramref name="frames"/> value. Also sets <see cref="itemTimeMax"/> to that value plus one.
++	/// <br/><br/> Commonly used by held projectiles to put the player in a state of using an item. This is usually done each time AI executes to lock the player in that state until the player releases the "Use Item" keybind.
++	/// <include file = 'CommonDocs.xml' path='Common/PlayerItemUseAnimation' />
++	/// </summary>
  	public void SetDummyItemTime(int frames)
  	{
+ 		itemAnimation = frames;
 @@ -2362,14 +_,15 @@
  		itemTimeMax = frames + 1;
  	}
