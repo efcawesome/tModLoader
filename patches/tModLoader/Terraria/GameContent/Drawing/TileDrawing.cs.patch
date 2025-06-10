@@ -1,6 +1,6 @@
 --- src/TerrariaNetCore/Terraria/GameContent/Drawing/TileDrawing.cs
 +++ src/tModLoader/Terraria/GameContent/Drawing/TileDrawing.cs
-@@ -11,33 +_,46 @@
+@@ -11,33 +_,48 @@
  using Terraria.Graphics;
  using Terraria.Graphics.Capture;
  using Terraria.ID;
@@ -35,9 +35,11 @@
  		TeleportationPylon,
  		MasterTrophy,
  		AnyDirectionalGrass,
-+		/// <summary> Will cause <see cref="ModTile.SpecialDraw(int, int, SpriteBatch)"/> to be called. </summary>
++		/// <summary> Will cause <see cref="ModTile.SpecialDraw(int, int, SpriteBatch)"/> to be called.
++		/// <br/><br/> This option should be used with non-<see cref="Main.tileSolid"/> tiles or solid tiles that set <see cref="TileID.Sets.DrawTileInSolidLayer"/> to false.</summary>
 +		CustomNonSolid,
-+		/// <summary> Will cause <see cref="ModTile.SpecialDraw(int, int, SpriteBatch)"/> to be called. </summary>
++		/// <summary> Will cause <see cref="ModTile.SpecialDraw(int, int, SpriteBatch)"/> to be called.
++		/// <br/><br/> This option should be used with <see cref="Main.tileSolid"/> tiles or non-solid tiles that set <see cref="TileID.Sets.DrawTileInSolidLayer"/> to true.</summary>
 +		CustomSolid,
  		Count
  	}

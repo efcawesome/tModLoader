@@ -81,7 +81,7 @@ namespace ExampleMod.Content.Tiles.Furniture
 			// Therefore we register the top-left of the tile as a "special point"
 			// This allows us to draw things in SpecialDraw
 			if (drawData.tileFrameX % FrameWidth == 0 && drawData.tileFrameY % FrameHeight == 0) {
-				Main.instance.TilesRenderer.AddSpecialPoint(i, j, Terraria.GameContent.Drawing.TileDrawing.TileCounterType.CustomNonSolid);
+				Main.instance.TilesRenderer.AddSpecialPoint(i, j, Terraria.GameContent.Drawing.TileDrawing.TileCounterType.CustomNonSolid); // This tile is not Main.tileSolid, so CustomNonSolid is the correct choice here.
 			}
 		}
 
