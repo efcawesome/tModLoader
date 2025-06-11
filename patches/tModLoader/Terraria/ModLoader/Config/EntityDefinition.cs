@@ -146,8 +146,13 @@ public class NPCDefinition : EntityDefinition
 {
 	public static readonly Func<TagCompound, NPCDefinition> DESERIALIZER = Load;
 
-	// TODO: doesn't handle negative I think?
-	public override int Type => NPCID.Search.TryGetId(Mod != "Terraria" ? $"{Mod}/{Name}" : Name, out int id) ? id : -1;
+	public override bool IsUnloaded
+		=> Type <= NPCID.NegativeIDCount && !(Mod == "Terraria" && Name == "None" || Mod == "" && Name == "");
+
+	/// <summary>
+	/// The NPCID of the NPC this NPCDefinition represents. Will be -66 (<see cref="NPCID.NegativeIDCount"/>) for <see cref="IsUnloaded"/> NPCDefinition.
+	/// </summary>
+	public override int Type => NPCID.Search.TryGetId(Mod != "Terraria" ? $"{Mod}/{Name}" : Name, out int id) ? id : NPCID.NegativeIDCount;
 
 	public NPCDefinition() : base() { }
 	/// <summary><b>Note: </b>As ModConfig loads before other content, make sure to only use <see cref="NPCDefinition(string, string)"/> for modded content in ModConfig classes. </summary>
