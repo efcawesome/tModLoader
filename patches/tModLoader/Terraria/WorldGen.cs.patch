@@ -2523,10 +2523,14 @@
  			return false;
  
  		Tile tile = Main.tile[x, y];
-@@ -44606,7 +_,7 @@
+@@ -44606,7 +_,11 @@
  			return false;
  
  		MoveReplaceTileAnchor(ref x, ref y, targetType, tileSafely);
++
++		bool _f = false, _e = false, _n = false;
++		TileLoader.KillTile(x, y, tileSafely.type, ref _f, ref _e, ref _n);
++
 -		int num = KillTile_GetTileDustAmount(fail: false, tileSafely);
 +		int num = KillTile_GetTileDustAmount(fail: false, tileSafely, x, y);
  		for (int i = 0; i < num; i++) {
